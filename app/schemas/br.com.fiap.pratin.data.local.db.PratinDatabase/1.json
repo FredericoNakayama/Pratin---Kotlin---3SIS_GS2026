@@ -1,0 +1,240 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "109f36ea16d243c50f6158944c1b0c95",
+    "entities": [
+      {
+        "tableName": "alimentos",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `nome` TEXT NOT NULL, `categoria` TEXT NOT NULL, `quantidade` REAL NOT NULL, `unidade` TEXT NOT NULL, `dataValidade` TEXT NOT NULL, `retiradaInicio` TEXT NOT NULL, `retiradaFim` TEXT NOT NULL, `endereco` TEXT NOT NULL, `fotoUrl` TEXT, `status` TEXT NOT NULL, `estabelecimentoCnpj` TEXT NOT NULL, `estabelecimentoNome` TEXT NOT NULL, `declaracaoProprio` INTEGER NOT NULL, `favorito` INTEGER NOT NULL DEFAULT 0, `criadoEm` TEXT NOT NULL, `atualizadoEm` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nome",
+            "columnName": "nome",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "categoria",
+            "columnName": "categoria",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "quantidade",
+            "columnName": "quantidade",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "unidade",
+            "columnName": "unidade",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dataValidade",
+            "columnName": "dataValidade",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "retiradaInicio",
+            "columnName": "retiradaInicio",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "retiradaFim",
+            "columnName": "retiradaFim",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "endereco",
+            "columnName": "endereco",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fotoUrl",
+            "columnName": "fotoUrl",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "estabelecimentoCnpj",
+            "columnName": "estabelecimentoCnpj",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "estabelecimentoNome",
+            "columnName": "estabelecimentoNome",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "declaracaoProprio",
+            "columnName": "declaracaoProprio",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "favorito",
+            "columnName": "favorito",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "criadoEm",
+            "columnName": "criadoEm",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "atualizadoEm",
+            "columnName": "atualizadoEm",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_alimentos_status",
+            "unique": false,
+            "columnNames": [
+              "status"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_alimentos_status` ON `${TABLE_NAME}` (`status`)"
+          },
+          {
+            "name": "index_alimentos_estabelecimentoCnpj",
+            "unique": false,
+            "columnNames": [
+              "estabelecimentoCnpj"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_alimentos_estabelecimentoCnpj` ON `${TABLE_NAME}` (`estabelecimentoCnpj`)"
+          }
+        ]
+      },
+      {
+        "tableName": "reservas",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `alimentoId` INTEGER NOT NULL, `ongCnpj` TEXT NOT NULL, `ongNome` TEXT NOT NULL, `codigoRetirada` TEXT NOT NULL, `status` TEXT NOT NULL, `criadaEm` TEXT NOT NULL, `atualizadaEm` TEXT NOT NULL, FOREIGN KEY(`alimentoId`) REFERENCES `alimentos`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "alimentoId",
+            "columnName": "alimentoId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ongCnpj",
+            "columnName": "ongCnpj",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ongNome",
+            "columnName": "ongNome",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "codigoRetirada",
+            "columnName": "codigoRetirada",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "criadaEm",
+            "columnName": "criadaEm",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "atualizadaEm",
+            "columnName": "atualizadaEm",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_reservas_alimentoId",
+            "unique": false,
+            "columnNames": [
+              "alimentoId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_reservas_alimentoId` ON `${TABLE_NAME}` (`alimentoId`)"
+          },
+          {
+            "name": "index_reservas_ongCnpj",
+            "unique": false,
+            "columnNames": [
+              "ongCnpj"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_reservas_ongCnpj` ON `${TABLE_NAME}` (`ongCnpj`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "alimentos",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "alimentoId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '109f36ea16d243c50f6158944c1b0c95')"
+    ]
+  }
+}
