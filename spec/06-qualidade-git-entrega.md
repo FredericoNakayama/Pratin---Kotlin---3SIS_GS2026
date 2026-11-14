@@ -128,6 +128,8 @@ $adb = "$env:LOCALAPPDATA\Android\Sdk\platform-tools\adb.exe"
 
 > No PowerShell 5.1, o `>` pode corromper binários. Se o PNG não abrir, use: `& $adb shell screencap -p /sdcard/s.png; & $adb pull /sdcard/s.png docs\prints\NN-nome.png`.
 
+> **Emulador lento ou "não está respondendo" ao abrir:** o AVD `Pixel_8` tem 2 GB de RAM e a imagem com Play Store mantém vários apps do Google em segundo plano. Antes de gravar, faça um *Cold Boot* (Device Manager → ⋮ → Cold Boot Now) ou rode `adb shell am kill-all`; se possível, aumente a RAM do AVD para 4 GB. Evite `adb shell wm size`/`wm density` durante a gravação.
+
 | # | Print | Evidencia |
 | --- | --- | --- |
 | 01 | Splash | Identidade visual (crit. 1) |

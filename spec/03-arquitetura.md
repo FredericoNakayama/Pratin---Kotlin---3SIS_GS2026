@@ -37,7 +37,7 @@ MVVM com fluxo unidirecional (ADR-03), três camadas e dependências só para ba
 | AGP | 9.2.1 (Kotlin embutido) | Navigation Compose | 2.10.2 |
 | Kotlin (plugins compose/serialization) | 2.3.20 | Lifecycle | 2.11.0 |
 | KSP | 2.3.14 | Room | 2.8.5 |
-| `compileSdk` / `targetSdk` / `minSdk` | **37** / 36 / 26 | DataStore | 1.3.0 |
+| `compileSdk` / `targetSdk` / `minSdk` | **37** / 37 / 26 | DataStore | 1.3.0 |
 | Java/Kotlin JVM target | 17 | Coil | 3.6.3 |
 
 > `compileSdk 37` é obrigatório: Compose BOM 2026.09, Navigation 2.10 e Coil 3.6 recusam compilar contra a API 36 (`checkDebugAarMetadata`).

@@ -31,6 +31,7 @@ fun CategoriaFiltroBar(
     onCategoriaChange: (Categoria?) -> Unit,
     onFavoritosChange: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
+    contentPadding: PaddingValues = PaddingValues(horizontal = Dimens.margemTela),
 ) {
     val cores = FilterChipDefaults.filterChipColors(
         selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
@@ -39,7 +40,7 @@ fun CategoriaFiltroBar(
     )
     LazyRow(
         modifier = modifier,
-        contentPadding = PaddingValues(horizontal = Dimens.margemTela),
+        contentPadding = contentPadding,
         horizontalArrangement = Arrangement.spacedBy(Dimens.sm),
     ) {
         item {
