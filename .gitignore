@@ -1,0 +1,27 @@
+# Gradle / build
+.gradle/
+build/
+/app/build/
+.kotlin/
+*.apk
+*.aab
+*.ap_
+*.dex
+
+# Local
+local.properties
+*.keystore
+*.jks
+captures/
+.externalNativeBuild/
+.cxx/
+
+# IDE e ferramentas locais
+.idea/
+*.iml
+.claude/settings.local.json
+.DS_Store
+Thumbs.db
+
+# Artefatos de entrega
+/entrega/
