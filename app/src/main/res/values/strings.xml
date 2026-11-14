@@ -96,6 +96,7 @@
     <string name="acao_confirmar_retirada">Confirmar retirada</string>
     <string name="acao_configurar_perfil">Configurar perfil</string>
     <string name="reservado_por">Reservado por %1$s</string>
+    <string name="reservado_por_rotulo">Reservado por</string>
     <string name="cancelar_reserva_titulo">Cancelar reserva</string>
     <string name="cancelar_reserva_mensagem">O alimento volta a ficar disponível para outras ONGs.</string>
     <string name="cancelar_anuncio_titulo">Cancelar anúncio</string>
