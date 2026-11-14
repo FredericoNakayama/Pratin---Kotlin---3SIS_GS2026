@@ -46,6 +46,8 @@ android {
 kotlin {
     compilerOptions {
         jvmTarget.set(JvmTarget.JVM_17)
+        // Anotações em parâmetros de construtor (ex.: @StringRes) valem também para a propriedade.
+        freeCompilerArgs.add("-Xannotation-default-target=param-property")
     }
 }
 
