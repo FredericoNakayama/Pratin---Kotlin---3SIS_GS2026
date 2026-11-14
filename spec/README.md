@@ -84,7 +84,7 @@ Atualize esta tabela ao concluir cada fase (no mesmo commit que fecha a fase).
 | F3 | Dados: Room, DataStore, repositórios, seed | ✅ concluída |
 | F4 | Navegação, Splash, Onboarding, Shell | ✅ concluída |
 | F5 | Perfil e Sobre | ✅ concluída |
-| F6 | Início, Detalhes, reserva e Confirmação | ⬜ pendente |
+| F6 | Início, Detalhes, reserva e Confirmação | ✅ concluída |
 | F7 | Novo anúncio | ⬜ pendente |
 | F8 | Minhas atividades, cancelamentos, retirada, expiração | ⬜ pendente |
 | F9 | Polimento, acessibilidade e revisão | ⬜ pendente |

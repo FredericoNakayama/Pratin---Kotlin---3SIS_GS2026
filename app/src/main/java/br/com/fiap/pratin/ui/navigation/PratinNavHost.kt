@@ -9,6 +9,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import br.com.fiap.pratin.R
 import br.com.fiap.pratin.ui.components.TelaProvisoria
+import br.com.fiap.pratin.ui.screens.confirmacao.ConfirmacaoRoute
+import br.com.fiap.pratin.ui.screens.detalhes.DetalhesRoute
+import br.com.fiap.pratin.ui.screens.inicio.InicioRoute
 import br.com.fiap.pratin.ui.screens.onboarding.OnboardingRoute
 import br.com.fiap.pratin.ui.screens.perfil.PerfilRoute
 import br.com.fiap.pratin.ui.screens.sobre.SobreScreen
@@ -39,7 +42,14 @@ fun PratinNavHost(navController: NavHostController, modifier: Modifier = Modifie
         }
 
         navigation<MainGraph>(startDestination = InicioRoute) {
-            composable<InicioRoute> { TelaProvisoria(stringResource(R.string.aba_inicio)) }
+            composable<InicioRoute> {
+                InicioRoute(
+                    onAbrirDetalhes = { id -> navController.navigate(DetalhesRoute(id)) },
+                    onAnunciar = { navController.navigate(NovoAnuncioRoute) },
+                    onConfigurarPerfil = { navController.navigate(EditarPerfilRoute) },
+                    onAbrirSobre = { navController.navigate(SobreRoute) },
+                )
+            }
             composable<AtividadesRoute> { TelaProvisoria(stringResource(R.string.atividades_titulo)) }
             composable<PerfilRoute> {
                 PerfilRoute(
@@ -50,13 +60,31 @@ fun PratinNavHost(navController: NavHostController, modifier: Modifier = Modifie
         }
 
         composable<DetalhesRoute> {
-            TelaProvisoria(stringResource(R.string.detalhes_quantidade), onVoltar = navController::navigateUp)
+            DetalhesRoute(
+                onVoltar = navController::navigateUp,
+                // Detalhes sai da pilha: "voltar" na Confirmação leva ao Início (RF13-CA2).
+                onReservado = { reservaId ->
+                    navController.navigate(ConfirmacaoReservaRoute(reservaId)) {
+                        popUpTo<DetalhesRoute> { inclusive = true }
+                    }
+                },
+                onConfigurarPerfil = { navController.navigate(EditarPerfilRoute) },
+            )
         }
         composable<NovoAnuncioRoute> {
             TelaProvisoria(stringResource(R.string.novo_anuncio_titulo), onVoltar = navController::navigateUp)
         }
         composable<ConfirmacaoReservaRoute> {
-            TelaProvisoria(stringResource(R.string.confirmacao_titulo), onVoltar = navController::navigateUp)
+            // Sai da Confirmação sem guardar estado: a tela não volta mais (RF14-CA3).
+            ConfirmacaoRoute(
+                onVerAtividades = {
+                    navController.navigate(AtividadesRoute) {
+                        popUpTo(InicioRoute)
+                        launchSingleTop = true
+                    }
+                },
+                onVoltarInicio = { navController.popBackStack(InicioRoute, inclusive = false) },
+            )
         }
         composable<EditarPerfilRoute> {
             PerfilRoute(
