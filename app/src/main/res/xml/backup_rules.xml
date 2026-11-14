@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Regras de backup (Android 11 ou anterior). Padrão: tudo incluído. -->
+<full-backup-content />

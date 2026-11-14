@@ -78,7 +78,7 @@ Atualize esta tabela ao concluir cada fase (no mesmo commit que fecha a fase).
 
 | Fase | Descrição | Status |
 | --- | --- | --- |
-| F0 | Setup do projeto e do Git | ⬜ pendente |
+| F0 | Setup do projeto e do Git | ✅ concluída |
 | F1 | Design system (tema, cores, logo, strings) | ⬜ pendente |
 | F2 | Domínio puro + testes unitários | ⬜ pendente |
 | F3 | Dados: Room, DataStore, repositórios, seed | ⬜ pendente |

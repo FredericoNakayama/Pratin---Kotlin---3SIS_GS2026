@@ -29,13 +29,27 @@ MVVM com fluxo unidirecional (ADR-03), três camadas e dependências só para ba
 | Emulador | AVD `Pixel_8` (imagem `android-37.0` Google Play, x86_64) |
 | Cache Gradle local | AGP 9.1.1 / 9.2.1 · Kotlin 2.3.x · Gradle 9.3.1 / 9.4.1 · Room 2.7.1 |
 
+### 2.1.1 Versões adotadas na F0 (14/11/2026)
+
+| Item | Versão | Item | Versão |
+| --- | --- | --- | --- |
+| Gradle (wrapper) | 9.4.1 | Compose BOM | 2026.09.00 |
+| AGP | 9.2.1 (Kotlin embutido) | Navigation Compose | 2.10.2 |
+| Kotlin (plugins compose/serialization) | 2.3.20 | Lifecycle | 2.11.0 |
+| KSP | 2.3.14 | Room | 2.8.5 |
+| `compileSdk` / `targetSdk` / `minSdk` | **37** / 36 / 26 | DataStore | 1.3.0 |
+| Java/Kotlin JVM target | 17 | Coil | 3.6.3 |
+
+> `compileSdk 37` é obrigatório: Compose BOM 2026.09, Navigation 2.10 e Coil 3.6 recusam compilar contra a API 36 (`checkDebugAarMetadata`).
+> Pela linha de comando, o build precisa de `local.properties` com `sdk.dir=C\:\\Users\\<usuario>\\AppData\\Local\\Android\\Sdk` (o Android Studio cria sozinho; o arquivo **não** é versionado).
+
 ### 2.2 Regra de versões
 
 1. **Gere o projeto pelo template "Empty Activity" (Compose) do Android Studio instalado.** As versões de AGP, Kotlin, Gradle e Compose BOM do template são a referência mais confiável para esta máquina.
 2. Toda versão fica em `gradle/libs.versions.toml` (version catalog). Nada de versão "chumbada" no `build.gradle.kts`.
 3. Ao adicionar uma biblioteca, use a **última versão estável compatível** com o Kotlin/AGP do template. Se o build falhar por incompatibilidade, ajuste a versão (não troque a biblioteca) e registre no commit.
 4. Com **AGP 9.x**, o suporte a Kotlin é embutido: **não** aplique `org.jetbrains.kotlin.android` se o template não aplicar. Os plugins `org.jetbrains.kotlin.plugin.compose` e `org.jetbrains.kotlin.plugin.serialization` continuam necessários.
-5. `compileSdk` e `targetSdk` = o que o template definir (36 ou superior); **`minSdk = 26`** (java.time nativo).
+5. `compileSdk` = o exigido pelas bibliotecas (hoje 37), `targetSdk` = 36 ou superior; **`minSdk = 26`** (java.time nativo).
 
 ### 2.3 Dependências permitidas
 
