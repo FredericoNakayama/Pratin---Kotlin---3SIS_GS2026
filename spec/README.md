@@ -81,7 +81,7 @@ Atualize esta tabela ao concluir cada fase (no mesmo commit que fecha a fase).
 | F0 | Setup do projeto e do Git | ✅ concluída |
 | F1 | Design system (tema, cores, logo, strings) | ✅ concluída |
 | F2 | Domínio puro + testes unitários | ✅ concluída |
-| F3 | Dados: Room, DataStore, repositórios, seed | ⬜ pendente |
+| F3 | Dados: Room, DataStore, repositórios, seed | ✅ concluída |
 | F4 | Navegação, Splash, Onboarding, Shell | ⬜ pendente |
 | F5 | Perfil e Sobre | ⬜ pendente |
 | F6 | Início, Detalhes, reserva e Confirmação | ⬜ pendente |
