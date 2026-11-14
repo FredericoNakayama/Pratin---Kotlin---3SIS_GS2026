@@ -18,6 +18,7 @@ import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -80,7 +81,7 @@ fun DateTimeField(
     modifier: Modifier = Modifier,
     erro: String? = null,
 ) {
-    var etapa by rememberSaveable { mutableStateOf(0) } // 0 = fechado, 1 = data, 2 = hora
+    var etapa by rememberSaveable { mutableIntStateOf(0) } // 0 = fechado, 1 = data, 2 = hora
     var dataEscolhida by rememberSaveable { mutableStateOf<String?>(null) }
 
     CampoClicavel(
