@@ -1,3 +1,230 @@
 <resources>
+    <!-- Marca -->
     <string name="app_name">Pratin</string>
+    <string name="slogan">Alimento bom não se joga fora.</string>
+    <string name="cd_logo">Logo do Pratin</string>
+
+    <!-- Navegação -->
+    <string name="aba_inicio">Início</string>
+    <string name="aba_atividades">Atividades</string>
+    <string name="aba_perfil">Perfil</string>
+    <string name="cd_voltar">Voltar</string>
+    <string name="cd_sobre">Sobre o Pratin</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_titulo_1">Comida boa no lixo, não!</string>
+    <string name="onboarding_descricao_1">Todos os dias, alimentos próprios para consumo são descartados por estarem perto do vencimento.</string>
+    <string name="onboarding_titulo_2">Anuncie o que sobrou</string>
+    <string name="onboarding_descricao_2">Padarias, mercados e restaurantes publicam em poucos toques os alimentos que vencem em até 7 dias.</string>
+    <string name="onboarding_titulo_3">Reserve e retire</string>
+    <string name="onboarding_descricao_3">A ONG reserva o lote, recebe um código e retira no local para levar a quem precisa.</string>
+    <string name="onboarding_pular">Pular</string>
+    <string name="onboarding_voltar">Voltar</string>
+    <string name="onboarding_avancar">Avançar</string>
+    <string name="onboarding_comecar">Começar</string>
+    <string name="onboarding_nao_mostrar">Não mostrar novamente</string>
+    <string name="cd_pagina_atual">Página %1$d de %2$d</string>
+
+    <!-- Início -->
+    <string name="inicio_saudacao">Olá!</string>
+    <string name="inicio_saudacao_nome">Olá, %1$s!</string>
+    <string name="inicio_subtitulo">Alimentos disponíveis para doação</string>
+    <string name="inicio_buscar">Buscar alimento</string>
+    <string name="cd_limpar_busca">Limpar busca</string>
+    <string name="filtro_todos">Todos</string>
+    <string name="filtro_favoritos">Favoritos</string>
+    <string name="acao_anunciar">Anunciar</string>
+    <string name="cd_favoritar">Favoritar</string>
+    <string name="cd_desfavoritar">Remover dos favoritos</string>
+    <string name="janela_retirada">Retirada %1$s</string>
+
+    <!-- Vencimento (RN14) -->
+    <string name="vence_hoje">Vence hoje</string>
+    <string name="vence_amanha">Vence amanhã</string>
+    <plurals name="vence_em_dias">
+        <item quantity="one">Vence em %d dia</item>
+        <item quantity="other">Vence em %d dias</item>
+    </plurals>
+    <string name="vencido">Vencido</string>
+
+    <!-- Detalhes -->
+    <string name="detalhes_quantidade">Quantidade</string>
+    <string name="detalhes_categoria">Categoria</string>
+    <string name="detalhes_validade">Validade</string>
+    <string name="detalhes_janela">Janela de retirada</string>
+    <string name="detalhes_estabelecimento">Estabelecimento</string>
+    <string name="detalhes_endereco">Endereço</string>
+    <string name="detalhes_doacao_gratuita">Doação gratuita</string>
+    <string name="detalhes_declaracao">Declarado próprio para consumo pelo estabelecimento</string>
+    <string name="acao_reservar">Reservar</string>
+    <string name="reservar_titulo">Reservar alimento</string>
+    <string name="reservar_mensagem">Reservar este lote para a sua ONG? O lote inteiro fica reservado até o fim da janela de retirada.</string>
+    <string name="detalhes_indisponivel">Este alimento não está disponível para reserva.</string>
+    <string name="acao_voltar_inicio">Voltar ao início</string>
+
+    <!-- Confirmação de reserva -->
+    <string name="confirmacao_titulo">Reserva confirmada!</string>
+    <string name="confirmacao_codigo">Código de retirada</string>
+    <string name="confirmacao_aviso">Apresente este código ao estabelecimento na retirada.</string>
+    <string name="acao_ver_atividades">Ver minhas atividades</string>
+    <string name="cd_copiar_codigo">Copiar código</string>
+
+    <!-- Novo anúncio -->
+    <string name="novo_anuncio_titulo">Novo anúncio</string>
+    <string name="campo_nome_alimento">Nome do alimento</string>
+    <string name="campo_categoria">Categoria</string>
+    <string name="campo_quantidade">Quantidade</string>
+    <string name="campo_unidade">Unidade</string>
+    <string name="campo_validade">Data de validade</string>
+    <string name="campo_retirada_inicio">Início da retirada</string>
+    <string name="campo_retirada_fim">Fim da retirada</string>
+    <string name="campo_endereco">Endereço</string>
+    <string name="campo_foto_url">URL da foto (opcional)</string>
+    <string name="campo_declaracao">Declaro que o alimento está próprio para consumo</string>
+    <string name="acao_publicar">Publicar anúncio</string>
+    <string name="acao_selecionar">Selecionar</string>
+    <string name="acao_ok">OK</string>
+    <string name="acao_cancelar">Cancelar</string>
+    <string name="selecione_horario">Selecione o horário</string>
+
+    <!-- Atividades -->
+    <string name="atividades_minhas_reservas">Minhas reservas</string>
+    <string name="atividades_meus_anuncios">Meus anúncios</string>
+    <string name="atividades_titulo">Minhas atividades</string>
+    <string name="acao_cancelar_reserva">Cancelar reserva</string>
+    <string name="acao_cancelar_anuncio">Cancelar anúncio</string>
+    <string name="acao_confirmar_retirada">Confirmar retirada</string>
+    <string name="acao_configurar_perfil">Configurar perfil</string>
+    <string name="reservado_por">Reservado por %1$s</string>
+    <string name="cancelar_reserva_titulo">Cancelar reserva</string>
+    <string name="cancelar_reserva_mensagem">O alimento volta a ficar disponível para outras ONGs.</string>
+    <string name="cancelar_anuncio_titulo">Cancelar anúncio</string>
+    <string name="cancelar_anuncio_mensagem">O anúncio deixa de aparecer para as ONGs. Esta ação não pode ser desfeita.</string>
+    <string name="confirmar_retirada_titulo">Confirmar retirada</string>
+    <string name="confirmar_retirada_mensagem">Digite o código de 6 caracteres apresentado pela ONG.</string>
+    <string name="campo_codigo">Código de retirada</string>
+    <string name="acao_confirmar">Confirmar</string>
+    <string name="acao_manter">Manter</string>
+
+    <!-- Perfil -->
+    <string name="perfil_titulo">Meu perfil</string>
+    <string name="perfil_configurar_titulo">Configurar perfil</string>
+    <string name="perfil_tipo">Você é</string>
+    <string name="campo_nome_perfil">Nome</string>
+    <string name="campo_cnpj">CNPJ</string>
+    <string name="acao_salvar_perfil">Salvar perfil</string>
+    <string name="acao_editar_perfil">Editar perfil</string>
+    <string name="acao_perfil_demonstracao">Preencher com perfil de demonstração</string>
+    <string name="acao_ver_introducao">Ver introdução novamente</string>
+    <string name="perfil_necessario_titulo">Perfil necessário</string>
+    <string name="acao_agora_nao">Agora não</string>
+
+    <!-- Sobre -->
+    <string name="sobre_titulo">Sobre o Pratin</string>
+    <string name="sobre_problema_titulo">O problema</string>
+    <string name="sobre_problema">Padarias, mercados e restaurantes descartam alimentos ainda próprios para consumo porque estão perto do vencimento, enquanto famílias do mesmo bairro passam fome. Comércio e ONG estão próximos, mas não se conectam.</string>
+    <string name="sobre_publico_titulo">Quem é beneficiado</string>
+    <string name="sobre_publico">Pessoas em insegurança alimentar atendidas por ONGs, voluntários que buscam doações e pequenos empreendedores que querem doar o excedente em vez de jogá-lo fora.</string>
+    <string name="sobre_como_titulo">Como funciona</string>
+    <string name="sobre_passo_1">O estabelecimento anuncia um lote de alimento que vence em até 7 dias, com uma janela de retirada.</string>
+    <string name="sobre_passo_2">A ONG reserva o lote e recebe um código de retirada de 6 caracteres.</string>
+    <string name="sobre_passo_3">Na retirada, o estabelecimento digita o código e a doação é concluída. A doação é sempre gratuita.</string>
+    <string name="sobre_ods_titulo">Objetivos de Desenvolvimento Sustentável</string>
+    <string name="sobre_ods2_titulo">ODS 2 — Fome zero</string>
+    <string name="sobre_ods2">Leva alimento seguro, que seria descartado, até quem precisa por meio das ONGs.</string>
+    <string name="sobre_ods12_titulo">ODS 12 — Consumo e produção responsáveis</string>
+    <string name="sobre_ods12">Dá ao comércio um destino útil para o excedente e reduz o desperdício de alimentos no varejo.</string>
+    <string name="sobre_prototipo_titulo">Sobre este protótipo</string>
+    <string name="sobre_prototipo">Protótipo acadêmico da Global Solution FIAP 2026. Os dados ficam no próprio aparelho e os anúncios iniciais são exemplos. O app não está integrado a serviços externos ou públicos.</string>
+    <string name="sobre_equipe_titulo">Equipe</string>
+    <string name="sobre_equipe">Frederico Nakayama Sant\'anna — RM555350\nJoão Pedro Veloso Pilon — RM556199</string>
+
+    <!-- Tipos de perfil -->
+    <string name="tipo_estabelecimento">Estabelecimento</string>
+    <string name="tipo_ong">ONG</string>
+
+    <!-- Categorias (RN13) -->
+    <string name="categoria_paes">Pães e confeitaria</string>
+    <string name="categoria_hortifruti">Hortifrúti</string>
+    <string name="categoria_laticinios">Laticínios</string>
+    <string name="categoria_carnes">Carnes e frios</string>
+    <string name="categoria_mercearia">Mercearia</string>
+    <string name="categoria_refeicoes">Refeições prontas</string>
+    <string name="categoria_bebidas">Bebidas</string>
+    <string name="categoria_outros">Outros</string>
+
+    <!-- Unidades (RN13): singular e plural -->
+    <string name="unidade_unidade_um">unidade</string>
+    <string name="unidade_unidade_varios">unidades</string>
+    <string name="unidade_kg_um">kg</string>
+    <string name="unidade_kg_varios">kg</string>
+    <string name="unidade_litro_um">litro</string>
+    <string name="unidade_litro_varios">litros</string>
+    <string name="unidade_pacote_um">pacote</string>
+    <string name="unidade_pacote_varios">pacotes</string>
+    <string name="unidade_caixa_um">caixa</string>
+    <string name="unidade_caixa_varios">caixas</string>
+    <string name="unidade_porcao_um">porção</string>
+    <string name="unidade_porcao_varios">porções</string>
+
+    <!-- Status -->
+    <string name="status_disponivel">Disponível</string>
+    <string name="status_reservado">Reservado</string>
+    <string name="status_retirado">Retirado</string>
+    <string name="status_cancelado">Cancelado</string>
+    <string name="status_expirado">Expirado</string>
+    <string name="status_ativa">Ativa</string>
+    <string name="status_concluida">Concluída</string>
+    <string name="status_cancelada">Cancelada</string>
+    <string name="status_expirada">Expirada</string>
+
+    <!-- Mensagens -->
+    <string name="msg_lista_vazia">Nenhum alimento disponível agora. Volte mais tarde!</string>
+    <string name="msg_busca_vazia">Nenhum alimento encontrado.</string>
+    <string name="msg_favoritos_vazio">Nenhum dos seus favoritos está disponível agora.</string>
+    <string name="msg_reservas_vazias">Você ainda não reservou nenhum alimento.</string>
+    <string name="msg_anuncios_vazios">Você ainda não publicou nenhum anúncio.</string>
+    <string name="msg_sem_perfil_atividades">Configure seu perfil para ver suas atividades.</string>
+    <string name="msg_perfil_necessario">Configure seu perfil para anunciar ou reservar alimentos.</string>
+    <string name="msg_anuncio_publicado">Anúncio publicado!</string>
+    <string name="msg_anuncio_cancelado">Anúncio cancelado.</string>
+    <string name="msg_reserva_cancelada">Reserva cancelada.</string>
+    <string name="msg_retirada_confirmada">Retirada confirmada. Obrigado por doar!</string>
+    <string name="msg_perfil_salvo">Perfil salvo.</string>
+    <string name="msg_codigo_copiado">Código copiado.</string>
+    <string name="msg_erro_inesperado">Algo deu errado. Tente novamente.</string>
+    <string name="acao_tentar_novamente">Tentar novamente</string>
+
+    <!-- Erros de regra de negócio -->
+    <string name="erro_alimento_nao_encontrado">Este alimento não está mais disponível.</string>
+    <string name="erro_ja_reservado">Este alimento já foi reservado.</string>
+    <string name="erro_prazo_encerrado">O prazo de retirada deste alimento terminou.</string>
+    <string name="erro_codigo_invalido">Código inválido.</string>
+    <string name="erro_codigo_tamanho">O código tem 6 caracteres.</string>
+    <string name="erro_apenas_ongs">Apenas ONGs podem reservar alimentos.</string>
+    <string name="erro_apenas_estabelecimentos">Apenas estabelecimentos podem anunciar alimentos.</string>
+    <string name="erro_nao_pode_cancelar_anuncio">Só é possível cancelar anúncios disponíveis.</string>
+    <string name="erro_nao_pode_cancelar_reserva">Esta reserva não pode mais ser cancelada.</string>
+    <string name="erro_retirada_indisponivel">Este anúncio não está aguardando retirada.</string>
+    <string name="erro_reserva_nao_encontrada">Não encontramos a reserva ativa deste alimento.</string>
+    <string name="erro_nao_e_dono">Esta ação é permitida apenas ao dono do registro.</string>
+    <string name="erro_anuncio_invalido">Revise os campos destacados do anúncio.</string>
+
+    <!-- Erros de campo -->
+    <string name="erro_tipo_perfil">Escolha se você é Estabelecimento ou ONG.</string>
+    <string name="erro_cnpj">CNPJ inválido.</string>
+    <string name="erro_nome_perfil">Informe um nome com pelo menos 3 caracteres.</string>
+    <string name="erro_endereco">Informe um endereço com pelo menos 5 caracteres.</string>
+    <string name="erro_nome_alimento">Informe um nome entre 2 e 60 caracteres.</string>
+    <string name="erro_categoria">Selecione a categoria.</string>
+    <string name="erro_unidade">Selecione a unidade.</string>
+    <string name="erro_quantidade">Informe uma quantidade maior que zero.</string>
+    <string name="erro_validade_obrigatoria">Selecione a data de validade.</string>
+    <string name="erro_validade_fora_prazo">A validade deve ser entre hoje e os próximos 7 dias.</string>
+    <string name="erro_janela_obrigatoria">Selecione o início e o fim da retirada.</string>
+    <string name="erro_janela_curta">A janela de retirada deve ter pelo menos 1 hora.</string>
+    <string name="erro_janela_apos_validade">A retirada deve terminar até o dia da validade.</string>
+    <string name="erro_janela_passado">A janela de retirada deve começar e terminar no futuro.</string>
+    <string name="erro_foto_url">Informe uma URL começando com http, ou deixe em branco.</string>
+    <string name="erro_declaracao">Confirme que o alimento está próprio para consumo.</string>
 </resources>
