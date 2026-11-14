@@ -10,6 +10,8 @@ import androidx.navigation.compose.navigation
 import br.com.fiap.pratin.R
 import br.com.fiap.pratin.ui.components.TelaProvisoria
 import br.com.fiap.pratin.ui.screens.onboarding.OnboardingRoute
+import br.com.fiap.pratin.ui.screens.perfil.PerfilRoute
+import br.com.fiap.pratin.ui.screens.sobre.SobreScreen
 import br.com.fiap.pratin.ui.screens.splash.SplashRoute
 
 /** Grafo de navegação do app (spec/03-arquitetura.md §6.2). Telas recebem só IDs e callbacks. */
@@ -39,7 +41,12 @@ fun PratinNavHost(navController: NavHostController, modifier: Modifier = Modifie
         navigation<MainGraph>(startDestination = InicioRoute) {
             composable<InicioRoute> { TelaProvisoria(stringResource(R.string.aba_inicio)) }
             composable<AtividadesRoute> { TelaProvisoria(stringResource(R.string.atividades_titulo)) }
-            composable<PerfilRoute> { TelaProvisoria(stringResource(R.string.perfil_titulo)) }
+            composable<PerfilRoute> {
+                PerfilRoute(
+                    onAbrirSobre = { navController.navigate(SobreRoute) },
+                    onAbrirIntroducao = { navController.abrirIntroducao() },
+                )
+            }
         }
 
         composable<DetalhesRoute> {
@@ -52,10 +59,20 @@ fun PratinNavHost(navController: NavHostController, modifier: Modifier = Modifie
             TelaProvisoria(stringResource(R.string.confirmacao_titulo), onVoltar = navController::navigateUp)
         }
         composable<EditarPerfilRoute> {
-            TelaProvisoria(stringResource(R.string.perfil_configurar_titulo), onVoltar = navController::navigateUp)
+            PerfilRoute(
+                telaCheia = true,
+                onVoltar = navController::navigateUp,
+                onAbrirSobre = { navController.navigate(SobreRoute) },
+                onAbrirIntroducao = { navController.abrirIntroducao() },
+            )
         }
         composable<SobreRoute> {
-            TelaProvisoria(stringResource(R.string.sobre_titulo), onVoltar = navController::navigateUp)
+            SobreScreen(onVoltar = navController::navigateUp)
         }
     }
+}
+
+/** "Ver introdução novamente": reabre o Onboarding no lugar das abas. */
+private fun NavHostController.abrirIntroducao() {
+    navigate(OnboardingRoute) { popUpTo(MainGraph) { inclusive = true } }
 }
