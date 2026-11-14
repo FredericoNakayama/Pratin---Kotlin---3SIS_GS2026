@@ -175,7 +175,7 @@ Kotlin · Jetpack Compose (Material 3) · Navigation Compose (rotas type-safe) �
 
 | Item | Versão |
 | --- | --- |
-| Gradle / AGP / Kotlin | 9.4.1 / 9.2.1 / 2.3.20 |
+| Gradle / AGP / Kotlin | 9.4.1 / 9.1.0 / 2.3.20 |
 | Compose BOM / Navigation / Lifecycle | 2026.09.00 / 2.10.2 / 2.11.0 |
 | Room / DataStore | 2.8.5 / 1.3.0 |
 | `minSdk` / `targetSdk` / `compileSdk` | 26 / 37 / 37 |
