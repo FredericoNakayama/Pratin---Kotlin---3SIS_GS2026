@@ -1,7 +1,9 @@
 package br.com.fiap.pratin.ui.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -12,6 +14,7 @@ import br.com.fiap.pratin.ui.components.TelaProvisoria
 import br.com.fiap.pratin.ui.screens.confirmacao.ConfirmacaoRoute
 import br.com.fiap.pratin.ui.screens.detalhes.DetalhesRoute
 import br.com.fiap.pratin.ui.screens.inicio.InicioRoute
+import br.com.fiap.pratin.ui.screens.novoanuncio.NovoAnuncioRoute
 import br.com.fiap.pratin.ui.screens.onboarding.OnboardingRoute
 import br.com.fiap.pratin.ui.screens.perfil.PerfilRoute
 import br.com.fiap.pratin.ui.screens.sobre.SobreScreen
@@ -42,12 +45,15 @@ fun PratinNavHost(navController: NavHostController, modifier: Modifier = Modifie
         }
 
         navigation<MainGraph>(startDestination = InicioRoute) {
-            composable<InicioRoute> {
+            composable<InicioRoute> { entrada ->
+                val mensagemResultado by entrada.mensagemResultado().collectAsStateWithLifecycle()
                 InicioRoute(
                     onAbrirDetalhes = { id -> navController.navigate(DetalhesRoute(id)) },
                     onAnunciar = { navController.navigate(NovoAnuncioRoute) },
                     onConfigurarPerfil = { navController.navigate(EditarPerfilRoute) },
                     onAbrirSobre = { navController.navigate(SobreRoute) },
+                    mensagemResultado = mensagemResultado,
+                    onMensagemResultadoExibida = entrada::limparMensagemResultado,
                 )
             }
             composable<AtividadesRoute> { TelaProvisoria(stringResource(R.string.atividades_titulo)) }
@@ -72,7 +78,10 @@ fun PratinNavHost(navController: NavHostController, modifier: Modifier = Modifie
             )
         }
         composable<NovoAnuncioRoute> {
-            TelaProvisoria(stringResource(R.string.novo_anuncio_titulo), onVoltar = navController::navigateUp)
+            NovoAnuncioRoute(
+                onVoltar = navController::navigateUp,
+                onPublicado = { navController.voltarComMensagem(R.string.msg_anuncio_publicado) },
+            )
         }
         composable<ConfirmacaoReservaRoute> {
             // Sai da Confirmação sem guardar estado: a tela não volta mais (RF14-CA3).

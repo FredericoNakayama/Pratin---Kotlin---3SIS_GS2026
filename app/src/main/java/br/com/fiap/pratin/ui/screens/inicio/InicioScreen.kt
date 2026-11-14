@@ -41,6 +41,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import kotlinx.coroutines.launch
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -72,11 +74,24 @@ fun InicioRoute(
     onAnunciar: () -> Unit,
     onConfigurarPerfil: () -> Unit,
     onAbrirSobre: () -> Unit,
+    /** Mensagem deixada por outra tela ao voltar (ex.: "Anúncio publicado!"). */
+    mensagemResultado: Int? = null,
+    onMensagemResultadoExibida: () -> Unit = {},
     viewModel: InicioViewModel = viewModel(factory = InicioViewModel.Factory),
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val snackbar = remember { SnackbarHostState() }
     val mensagem = state.mensagem?.asString()
+    val textoResultado = mensagemResultado?.let { stringResource(it) }
+    val escopo = rememberCoroutineScope()
+
+    // O Snackbar roda num escopo próprio: limpar a mensagem muda a chave do efeito e não pode cancelá-lo.
+    LaunchedEffect(textoResultado) {
+        if (textoResultado != null) {
+            escopo.launch { snackbar.showSnackbar(textoResultado) }
+            onMensagemResultadoExibida()
+        }
+    }
 
     // Ao voltar para a tela, expira o que venceu (RF10-CA2).
     LifecycleResumeEffect(Unit) {
