@@ -34,7 +34,7 @@ MVVM com fluxo unidirecional (ADR-03), três camadas e dependências só para ba
 | Item | Versão | Item | Versão |
 | --- | --- | --- | --- |
 | Gradle (wrapper) | 9.4.1 | Compose BOM | 2026.09.00 |
-| AGP | 9.2.1 (Kotlin embutido) | Navigation Compose | 2.10.2 |
+| AGP | 9.1.0 (Kotlin embutido; máximo aceito pelo Android Studio 2025.3.3) | Navigation Compose | 2.10.2 |
 | Kotlin (plugins compose/serialization) | 2.3.20 | Lifecycle | 2.11.0 |
 | KSP | 2.3.14 | Room | 2.8.5 |
 | `compileSdk` / `targetSdk` / `minSdk` | **37** / 37 / 26 | DataStore | 1.3.0 |
@@ -48,8 +48,9 @@ MVVM com fluxo unidirecional (ADR-03), três camadas e dependências só para ba
 1. **Gere o projeto pelo template "Empty Activity" (Compose) do Android Studio instalado.** As versões de AGP, Kotlin, Gradle e Compose BOM do template são a referência mais confiável para esta máquina.
 2. Toda versão fica em `gradle/libs.versions.toml` (version catalog). Nada de versão "chumbada" no `build.gradle.kts`.
 3. Ao adicionar uma biblioteca, use a **última versão estável compatível** com o Kotlin/AGP do template. Se o build falhar por incompatibilidade, ajuste a versão (não troque a biblioteca) e registre no commit.
-4. Com **AGP 9.x**, o suporte a Kotlin é embutido: **não** aplique `org.jetbrains.kotlin.android` se o template não aplicar. Os plugins `org.jetbrains.kotlin.plugin.compose` e `org.jetbrains.kotlin.plugin.serialization` continuam necessários.
-5. `compileSdk` = o exigido pelas bibliotecas (hoje 37), `targetSdk` = 36 ou superior; **`minSdk = 26`** (java.time nativo).
+4. **O AGP NÃO DEVE passar da versão máxima aceita pelo Android Studio da equipe.** O build pela linha de comando funciona com versões mais novas, mas o Android Studio recusa abrir o projeto ("incompatible version of the Android Gradle plugin"). Confira no aviso do próprio Android Studio ou na versão gerada pelo template. Um cache do Gradle com versões mais novas **não** prova compatibilidade. (Em 14/11/2026 o AGP 9.2.1 foi trocado por 9.1.0 por esse motivo.)
+5. Com **AGP 9.x**, o suporte a Kotlin é embutido: **não** aplique `org.jetbrains.kotlin.android` se o template não aplicar. Os plugins `org.jetbrains.kotlin.plugin.compose` e `org.jetbrains.kotlin.plugin.serialization` continuam necessários.
+6. `compileSdk` = o exigido pelas bibliotecas (hoje 37), `targetSdk` = 36 ou superior; **`minSdk = 26`** (java.time nativo).
 
 ### 2.3 Dependências permitidas
 
