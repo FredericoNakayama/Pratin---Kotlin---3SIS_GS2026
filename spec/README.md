@@ -86,7 +86,7 @@ Atualize esta tabela ao concluir cada fase (no mesmo commit que fecha a fase).
 | F5 | Perfil e Sobre | ✅ concluída |
 | F6 | Início, Detalhes, reserva e Confirmação | ✅ concluída |
 | F7 | Novo anúncio | ✅ concluída |
-| F8 | Minhas atividades, cancelamentos, retirada, expiração | ⬜ pendente |
+| F8 | Minhas atividades, cancelamentos, retirada, expiração | ✅ concluída |
 | F9 | Polimento, acessibilidade e revisão | ⬜ pendente |
 | F10 | README, prints, ZIP e tag de entrega | ⬜ pendente |
 
