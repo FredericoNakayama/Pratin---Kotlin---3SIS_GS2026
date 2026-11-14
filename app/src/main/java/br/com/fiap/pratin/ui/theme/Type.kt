@@ -6,12 +6,13 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
-val Typography = Typography(
-    bodyLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
-        letterSpacing = 0.5.sp,
-    ),
+/** Tipografia padrão do Material 3 (Roboto). */
+val Typography = Typography()
+
+/** Estilo do código de retirada: monoespaçado e espaçado para leitura em voz alta. */
+val CodigoRetiradaStyle = TextStyle(
+    fontFamily = FontFamily.Monospace,
+    fontWeight = FontWeight.Bold,
+    fontSize = 34.sp,
+    letterSpacing = 8.sp,
 )
