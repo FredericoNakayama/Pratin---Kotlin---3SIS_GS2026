@@ -1,46 +1,44 @@
 package br.com.fiap.pratin.ui.theme
 
-import android.os.Build
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.graphics.Color
 
-private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80,
+private val PratinLightColorScheme = lightColorScheme(
+    primary = VerdePrimario,
+    onPrimary = Color.White,
+    primaryContainer = VerdeClaro,
+    onPrimaryContainer = VerdeEscuro,
+    secondary = LaranjaSecundario,
+    onSecondary = Color.White,
+    secondaryContainer = LaranjaClaro,
+    onSecondaryContainer = LaranjaEscuro,
+    background = Fundo,
+    onBackground = TextoPrimario,
+    surface = Superficie,
+    onSurface = TextoPrimario,
+    surfaceVariant = SuperficieVariante,
+    onSurfaceVariant = TextoSecundario,
+    surfaceContainerLowest = Superficie,
+    surfaceContainerLow = Superficie,
+    surfaceContainer = SuperficieVariante,
+    surfaceContainerHigh = SuperficieVariante,
+    outlineVariant = Divisor,
+    error = Erro,
+    onError = Color.White,
 )
 
-private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40,
-)
-
+/**
+ * Tema do Pratin. A cor dinâmica fica desligada porque o app tem identidade própria
+ * (spec/04-ui.md §1) e os prints do README usam sempre o tema claro.
+ */
 @Composable
-fun PratinTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicColor: Boolean = true,
-    content: @Composable () -> Unit,
-) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
-    }
-
+fun PratinTheme(content: @Composable () -> Unit) {
     MaterialTheme(
-        colorScheme = colorScheme,
+        colorScheme = PratinLightColorScheme,
         typography = Typography,
+        shapes = PratinShapes,
         content = content,
     )
 }
