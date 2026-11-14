@@ -3,7 +3,6 @@ package br.com.fiap.pratin.ui.screens.inicio
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -11,11 +10,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.lazy.grid.LazyGridItemSpanScope
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Clear
@@ -188,34 +189,64 @@ fun InicioScreen(
         },
         snackbarHost = { SnackbarHost(snackbar) },
     ) { padding ->
-        Column(Modifier.fillMaxSize().padding(padding)) {
-            Cabecalho(nome = state.perfil?.nome)
-            CampoBusca(state.busca, acoes.onBuscaChange)
-            CategoriaFiltroBar(
-                categoriaSelecionada = state.categoria,
-                somenteFavoritos = state.somenteFavoritos,
-                onCategoriaChange = acoes.onCategoriaChange,
-                onFavoritosChange = acoes.onFavoritosChange,
-                modifier = Modifier.padding(vertical = Dimens.sm),
-            )
-            PullToRefreshBox(
-                isRefreshing = state.atualizando,
-                onRefresh = acoes.onAtualizar,
-                modifier = Modifier.fillMaxSize(),
-            ) {
-                when {
-                    state.carregando -> LoadingState()
-                    state.erro != null -> ErrorState(state.erro.asString(), acoes.onTentarNovamente)
-                    state.alimentos.isEmpty() -> EmptyState(
+        PullToRefreshBox(
+            isRefreshing = state.atualizando,
+            onRefresh = acoes.onAtualizar,
+            modifier = Modifier.fillMaxSize().padding(padding),
+        ) {
+            ListaAlimentos(state, acoes)
+        }
+    }
+}
+
+/**
+ * Cabeçalho (saudação, busca, filtros) e os cards numa única grade rolável: 1 coluna em telas
+ * estreitas e 2 a partir de 600 dp (RF06-CA5). Assim o cabeçalho não ocupa a tela em paisagem.
+ */
+@Composable
+private fun ListaAlimentos(state: InicioUiState, acoes: InicioAcoes) {
+    BoxWithConstraints(Modifier.fillMaxSize()) {
+        val colunas = if (maxWidth >= Dimens.larguraGrade) 2 else 1
+        val linhaInteira: LazyGridItemSpanScope.() -> GridItemSpan = { GridItemSpan(maxLineSpan) }
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(colunas),
+            contentPadding = PaddingValues(start = Dimens.margemTela, end = Dimens.margemTela, bottom = 96.dp),
+            horizontalArrangement = Arrangement.spacedBy(Dimens.md),
+            verticalArrangement = Arrangement.spacedBy(Dimens.md),
+            modifier = Modifier.fillMaxSize(),
+        ) {
+            item(key = "cabecalho", span = linhaInteira) {
+                Column {
+                    Cabecalho(nome = state.perfil?.nome)
+                    CampoBusca(state.busca, acoes.onBuscaChange)
+                    CategoriaFiltroBar(
+                        categoriaSelecionada = state.categoria,
+                        somenteFavoritos = state.somenteFavoritos,
+                        onCategoriaChange = acoes.onCategoriaChange,
+                        onFavoritosChange = acoes.onFavoritosChange,
+                        contentPadding = PaddingValues(0.dp),
+                        modifier = Modifier.padding(top = Dimens.sm),
+                    )
+                }
+            }
+            val alturaEstado = Modifier.height(360.dp)
+            when {
+                state.carregando -> item(key = "carregando", span = linhaInteira) { LoadingState(alturaEstado) }
+                state.erro != null -> item(key = "erro", span = linhaInteira) {
+                    ErrorState(state.erro.asString(), acoes.onTentarNovamente, alturaEstado)
+                }
+                state.alimentos.isEmpty() -> item(key = "vazio", span = linhaInteira) {
+                    EmptyState(
                         icone = when {
                             state.somenteFavoritos -> Icons.Filled.FavoriteBorder
                             state.totalDisponiveis > 0 -> Icons.Filled.SearchOff
                             else -> Icons.Outlined.NoFood
                         },
                         mensagem = stringResource(state.mensagemVazio),
+                        modifier = alturaEstado,
                     )
-                    else -> ListaAlimentos(state, acoes)
                 }
+                else -> items(state.alimentos, key = { it.id }) { CardDoAlimento(it, state, acoes) }
             }
         }
     }
@@ -223,7 +254,7 @@ fun InicioScreen(
 
 @Composable
 private fun Cabecalho(nome: String?) {
-    Column(Modifier.padding(horizontal = Dimens.margemTela)) {
+    Column {
         Text(
             text = if (nome != null) stringResource(R.string.inicio_saudacao_nome, nome) else stringResource(R.string.inicio_saudacao),
             style = MaterialTheme.typography.headlineSmall,
@@ -255,35 +286,8 @@ private fun CampoBusca(busca: String, onBuscaChange: (String) -> Unit) {
         shape = MaterialTheme.shapes.medium,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = Dimens.margemTela, vertical = Dimens.sm),
+            .padding(top = Dimens.md),
     )
-}
-
-/** Lista em uma coluna; grade de 2 colunas a partir de 600 dp (RF06-CA5). */
-@Composable
-private fun ListaAlimentos(state: InicioUiState, acoes: InicioAcoes) {
-    val espacamento = PaddingValues(start = Dimens.margemTela, end = Dimens.margemTela, top = Dimens.xs, bottom = 96.dp)
-    BoxWithConstraints(Modifier.fillMaxSize()) {
-        if (maxWidth >= Dimens.larguraGrade) {
-            LazyVerticalGrid(
-                columns = GridCells.Fixed(2),
-                contentPadding = espacamento,
-                horizontalArrangement = Arrangement.spacedBy(Dimens.md),
-                verticalArrangement = Arrangement.spacedBy(Dimens.md),
-                modifier = Modifier.fillMaxSize(),
-            ) {
-                items(state.alimentos, key = { it.id }) { CardDoAlimento(it, state, acoes) }
-            }
-        } else {
-            LazyColumn(
-                contentPadding = espacamento,
-                verticalArrangement = Arrangement.spacedBy(Dimens.md),
-                modifier = Modifier.fillMaxSize(),
-            ) {
-                items(state.alimentos, key = { it.id }) { CardDoAlimento(it, state, acoes) }
-            }
-        }
-    }
 }
 
 @Composable
