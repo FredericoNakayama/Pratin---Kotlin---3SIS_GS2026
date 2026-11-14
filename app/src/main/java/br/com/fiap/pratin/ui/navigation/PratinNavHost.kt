@@ -1,5 +1,6 @@
 package br.com.fiap.pratin.ui.navigation
 
+import androidx.compose.animation.ExitTransition
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -24,7 +25,8 @@ import br.com.fiap.pratin.ui.screens.splash.SplashRoute
 fun PratinNavHost(navController: NavHostController, modifier: Modifier = Modifier) {
     NavHost(navController = navController, startDestination = SplashRoute, modifier = modifier) {
 
-        composable<SplashRoute> {
+        // A Splash sai sem animação: o fade mostrava a barra inferior do Início sobre o fundo verde.
+        composable<SplashRoute>(exitTransition = { ExitTransition.None }) {
             SplashRoute(
                 onIrParaOnboarding = {
                     navController.navigate(OnboardingRoute) { popUpTo(SplashRoute) { inclusive = true } }
