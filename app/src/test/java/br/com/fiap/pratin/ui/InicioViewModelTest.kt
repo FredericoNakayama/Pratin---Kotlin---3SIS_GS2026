@@ -7,6 +7,7 @@ import br.com.fiap.pratin.domain.alimentoDeTeste
 import br.com.fiap.pratin.domain.model.Categoria
 import br.com.fiap.pratin.domain.model.StatusAlimento
 import br.com.fiap.pratin.ui.screens.inicio.InicioViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
@@ -20,6 +21,7 @@ import java.time.Clock
 import java.time.ZoneId
 
 /** RF06–RF09 e RF21 — lista, busca, filtros e bloqueio sem perfil no Início. */
+@OptIn(ExperimentalCoroutinesApi::class)
 class InicioViewModelTest {
 
     @get:Rule
