@@ -4,13 +4,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import br.com.fiap.pratin.R
-import br.com.fiap.pratin.ui.components.TelaProvisoria
+import br.com.fiap.pratin.ui.screens.atividades.AtividadesRoute
 import br.com.fiap.pratin.ui.screens.confirmacao.ConfirmacaoRoute
 import br.com.fiap.pratin.ui.screens.detalhes.DetalhesRoute
 import br.com.fiap.pratin.ui.screens.inicio.InicioRoute
@@ -56,7 +55,15 @@ fun PratinNavHost(navController: NavHostController, modifier: Modifier = Modifie
                     onMensagemResultadoExibida = entrada::limparMensagemResultado,
                 )
             }
-            composable<AtividadesRoute> { TelaProvisoria(stringResource(R.string.atividades_titulo)) }
+            composable<AtividadesRoute> { entrada ->
+                val mensagemResultado by entrada.mensagemResultado().collectAsStateWithLifecycle()
+                AtividadesRoute(
+                    onConfigurarPerfil = { navController.navegarParaAba(AbaPrincipal.PERFIL) },
+                    onAnunciar = { navController.navigate(NovoAnuncioRoute) },
+                    mensagemResultado = mensagemResultado,
+                    onMensagemResultadoExibida = entrada::limparMensagemResultado,
+                )
+            }
             composable<PerfilRoute> {
                 PerfilRoute(
                     onAbrirSobre = { navController.navigate(SobreRoute) },
