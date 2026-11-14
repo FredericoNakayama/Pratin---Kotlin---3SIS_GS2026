@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Cores usadas fora do Compose (splash do sistema e ícone). No Compose, use ui/theme. -->
+    <color name="verde_primario">#FF2E7D32</color>
+    <color name="branco">#FFFFFFFF</color>
+</resources>

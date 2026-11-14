@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Tema base da Activity; as cores do app ficam no tema Compose (ui/theme). -->
-    <style name="Theme.Pratin" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.Pratin" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/verde_primario</item>
+    </style>
+
+    <!-- Splash do sistema com o mesmo fundo verde da Splash em Compose (ADR-09). -->
+    <style name="Theme.Pratin.Starting" parent="Theme.SplashScreen.IconBackground">
+        <item name="windowSplashScreenBackground">@color/verde_primario</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_logo</item>
+        <item name="windowSplashScreenIconBackgroundColor">@color/branco</item>
+        <item name="postSplashScreenTheme">@style/Theme.Pratin</item>
+    </style>
 </resources>
