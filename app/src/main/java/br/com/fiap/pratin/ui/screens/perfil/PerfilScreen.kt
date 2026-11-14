@@ -182,6 +182,10 @@ private fun FormularioPerfil(state: PerfilUiState, acoes: PerfilAcoes, modifier:
                     selected = form.tipo == tipo,
                     onClick = { acoes.onTipoChange(tipo) },
                     shape = SegmentedButtonDefaults.itemShape(indice, TipoPerfil.entries.size),
+                    colors = SegmentedButtonDefaults.colors(
+                        activeContainerColor = MaterialTheme.colorScheme.primaryContainer,
+                        activeContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    ),
                     icon = { Icon(tipo.icone(), contentDescription = null, modifier = Modifier.size(18.dp)) },
                 ) { Text(stringResource(tipo.rotuloRes())) }
             }
