@@ -37,10 +37,11 @@ MVVM com fluxo unidirecional (ADR-03), três camadas e dependências só para ba
 | AGP | 9.1.0 (Kotlin embutido; máximo aceito pelo Android Studio 2025.3.3) | Navigation Compose | 2.10.2 |
 | Kotlin (plugins compose/serialization) | 2.3.20 | Lifecycle | 2.11.0 |
 | KSP | 2.3.14 | Room | 2.8.5 |
-| `compileSdk` / `targetSdk` / `minSdk` | **37** / 37 / 26 | DataStore | 1.3.0 |
+| `compileSdk` / `targetSdk` / `minSdk` | **37.0** / 37 / 26 | DataStore | 1.3.0 |
 | Java/Kotlin JVM target | 17 | Coil | 3.6.3 |
 
 > `compileSdk 37` é obrigatório: Compose BOM 2026.09, Navigation 2.10 e Coil 3.6 recusam compilar contra a API 36 (`checkDebugAarMetadata`).
+> A API 37 só existe no SDK como **`android-37.0`** (versão menor no nome). Declare `compileSdk { version = release(37) { minorApiLevel = 0 } }`: com `compileSdk = 37` a sincronização do Android Studio 2025.3 procura `android-37` e falha ("Could not find compile target android-37"). O AGP 9.1.0 foi testado até a API 36.1; o aviso correspondente está suprimido em `gradle.properties` com a justificativa.
 > Pela linha de comando, o build precisa de `local.properties` com `sdk.dir=C\:\\Users\\<usuario>\\AppData\\Local\\Android\\Sdk` (o Android Studio cria sozinho; o arquivo **não** é versionado).
 
 ### 2.2 Regra de versões
