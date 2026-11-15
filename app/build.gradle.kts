@@ -11,7 +11,13 @@ plugins {
 android {
     namespace = "br.com.fiap.pratin"
     // Compose BOM 2026.09, Navigation 2.10 e Coil 3.6 exigem compilar contra a API 37.
-    compileSdk = 37
+    // A partir da API 37 o SDK publica a plataforma com versão menor ("android-37.0"); sem o
+    // minorApiLevel explícito, a sincronização do Android Studio procura "android-37" e falha.
+    compileSdk {
+        version = release(37) {
+            minorApiLevel = 0
+        }
+    }
 
     defaultConfig {
         applicationId = "br.com.fiap.pratin"
