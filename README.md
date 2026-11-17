@@ -257,4 +257,4 @@ Protótipo acadêmico. Os dados ficam no próprio aparelho e os anúncios inicia
 
 ## Vídeo pitch
 
-🎬 &lt;Adicionar link do vídeo pitch aqui&gt;
+🎬 [Assistir ao vídeo pitch no YouTube](https://www.youtube.com/watch?v=5OSnA0EIRk4&t=147s)
